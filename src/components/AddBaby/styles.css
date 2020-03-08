@@ -1,0 +1,66 @@
+.form-add-baby {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    height: 600px;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-add-baby-container {
+    align-items: center;
+    background: greenyellow;
+    border: black;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 100px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    height: 400px;
+    justify-content: center;
+    width: 40%;
+}
+
+.form-add-baby-title {
+    font-size: 40px;
+    padding: 0px;
+    margin: 5px;
+}
+
+.form-add-baby-input {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 8px 0;
+    padding: 12px 20px;
+    width: 60%;
+}
+
+.form-add-baby-button {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+    text-shadow:0px 1px 0px #ffffff;
+    width: 30%;
+    height: 40px;
+}
+
+.form-add-baby-button:hover {
+	background-color:#f6f6f6;
+}
+
+.form-add-baby-button:active {
+	position:relative;
+	top:1px;
+}
