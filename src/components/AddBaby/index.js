@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 import * as selectors from '../../reducers';
@@ -40,11 +41,13 @@ const AddBaby = ({ hasBabies, onSubmit }) => {
           onChange={e => changeLastNameInput(e.target.value)}
         />
         <br/>
-        <button type="submit" className="form-add-baby-button" onClick={
-          () => onSubmit(nameInput, lastNameInput)
-        }>
-          {'Crear'}
-        </button>
+        <Link to='/' >
+          <button type="submit" className="form-add-baby-button" onClick={
+            () => onSubmit(nameInput, lastNameInput)
+          }>
+            {'Crear'}
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -1,0 +1,51 @@
+.event-babies {
+    display: flex;
+    flex-direction: row;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    width: 100%;
+}
+
+.event-babies-info {
+    display: flex;
+    flex-direction: column;
+    min-height: max-content;
+    padding: 25px;
+    width: 65%;
+}
+
+.event-babies-form {
+    align-items: center;
+    background: blueviolet;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    justify-content: center;
+    width: 35%;
+}
+
+.event-babies-baby-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.event-babies-select {
+    border-radius: 10px;
+    border: 1px solid;
+    cursor: pointer;
+    height: 35px;
+    margin-top: 10px;
+    padding: 8px 16px;
+    user-select: none;
+    width: 80%;
+  }
+
+.event-babies-add-baby-button {
+    background: greenyellow;
+    border-radius: 50px;
+    bottom: 50px;
+    color: black;
+    font-size: 30px;
+    height: 45px;
+    margin-top: 5px;
+    width: 95px;
+}
