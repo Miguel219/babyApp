@@ -8,7 +8,9 @@ import AddBaby from '../AddBaby';
 import EventBabies from '../EventBabies';
 
 const history = createHashHistory();
-const App = ({ store }) => (
+const App = ({ store }) => { 
+  document.body.style = 'background: whitesmoke;';
+  return(
   <Provider store={store}>
     <Router history={history} >
     <Route exact path="/" render={() => { 
@@ -26,7 +28,7 @@ const App = ({ store }) => (
       </Route>
     </Router>
   </Provider>
-);
+)};
 
 
 export default App;

@@ -14,12 +14,17 @@
 }
 
 .event-babies-form {
+    background: white;
+    border-radius: 3px;
+    box-shadow: -5px 5px 0px -3px rgba(0,0,0,0.22);
+	border-radius:50px;
     align-items: center;
-    background: blueviolet;
     display: flex;
     flex-direction: column;
-    height: 600px;
+    height: 700px;
     justify-content: center;
+    position: fixed;
+    right: 10px;
     width: 35%;
 }
 

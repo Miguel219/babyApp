@@ -9,16 +9,6 @@ import * as actions from '../../actions/babies';
 
 
 const EventBabies = ({ babies, onSubmit }) => {
-  window.onload = () =>{
-    babies.map((baby) => {
-      var sel = document.getElementById('babiesSelect');
-      var opt = document.createElement('option');
-      opt.appendChild( document.createTextNode(baby.name + ' ' + baby.lastName) );
-      opt.value = baby.id; 
-      sel.appendChild(opt);
-      return opt; 
-    });
-  }
   return (
     <div className="event-babies">
         <div className="event-babies-info">
@@ -30,6 +20,11 @@ const EventBabies = ({ babies, onSubmit }) => {
               <option value="DEFAULT" disabled hidden>
                 {'Selecciona una opción'}
               </option>
+              {babies.map((baby) => (
+              <option key={baby.id} value={baby.id}>
+                {baby.name + ' ' + baby.lastName}
+              </option>
+              ))}
             </select>
             <Link to='/createBaby' >
               <button className="event-babies-add-baby-button">

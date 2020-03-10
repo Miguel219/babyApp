@@ -41,13 +41,22 @@ const AddBaby = ({ hasBabies, onSubmit }) => {
           onChange={e => changeLastNameInput(e.target.value)}
         />
         <br/>
-        <Link to='/' >
+        {(nameInput!=='' && lastNameInput!=='')
+        ? (
+          <Link to='/eventBabies' >
           <button type="submit" className="form-add-baby-button" onClick={
             () => onSubmit(nameInput, lastNameInput)
           }>
             {'Crear'}
           </button>
         </Link>
+        ) : (
+          <button type="submit" className="form-add-baby-button" onClick={
+            () => onSubmit(nameInput, lastNameInput)
+          }>
+            {'Crear'}
+          </button>
+        )}
       </div>
     </div>
   );
