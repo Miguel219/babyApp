@@ -14,15 +14,14 @@
 }
 
 .event-babies-form {
+	border-radius: 50px;
+    align-items: center;
     background: white;
     border-radius: 3px;
     box-shadow: -5px 5px 0px -3px rgba(0,0,0,0.22);
-	border-radius:50px;
-    align-items: center;
     display: flex;
     flex-direction: column;
     height: 700px;
-    justify-content: center;
     position: fixed;
     right: 10px;
     width: 35%;
@@ -31,6 +30,24 @@
 .event-babies-baby-container {
     display: flex;
     flex-direction: row;
+}
+
+.event-babies-event {
+	border-radius:20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: -5px 5px 0px -3px rgba(0,0,0,0.22);
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    margin-top: 20px;
+    right: 10px;
+    width: 80%;
+}
+
+.event-babies-event-label {
+    margin-left: 20px;
+    margin-top: 10px;
 }
 
 .event-babies-select {
@@ -53,4 +70,36 @@
     height: 45px;
     margin-top: 5px;
     width: 95px;
+}
+
+.event-babies-form-textarea {
+    border-radius: 10px;
+    border: 1px solid;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    width: 80%;
+}
+
+.event-babies-select-label {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.event-babies-form-button {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:greenyellow;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+    text-shadow:0px 1px 0px #ffffff;
+    height: 40px;
 }

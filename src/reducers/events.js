@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import omit from 'lodash/omit'
 
-import * as types from '../types/envents';
+import * as types from '../types/events';
 
 
 const orderByBaby = (state = {}, action) => {
@@ -10,13 +10,13 @@ const orderByBaby = (state = {}, action) => {
       return {
         ...state,
         [action.payload.babyId]: 
-          ((state.includes(action.payload.babyId)) 
-          ? [ ...state.action.payload.babyId, action.payload.eventId] 
+          ((state.hasOwnProperty(action.payload.babyId)) 
+          ? [ ...state[action.payload.babyId], action.payload.eventId] 
           : [action.payload.eventId]),
       };
     }
     case types.EVENT_DELETED: {
-      return state[action.payload.babyId].filter(action.payload.eventId);
+      return state[action.payload.babyId].filter(event => event !== action.payload.eventId);
     }
     default: {
       return state;
@@ -27,9 +27,14 @@ const orderByBaby = (state = {}, action) => {
 const byId = (state = {}, action) => {
   switch (action.type) {
     case types.EVENT_ADDED: {
+      const newPayload = Object.keys(action.payload).reduce((object, key) => {
+        if (key !== 'babyId')
+          object[key] = action.payload[key]
+        return object
+      }, {})
       return {
         ...state,
-        [action.payload.eventId]: action.payload,
+        [action.payload.eventId]: newPayload,
       };
     }
     case types.EVENT_DELETED: {
@@ -51,6 +56,11 @@ export default events;
 
 
 export const getEvent = (state, id) => state.byId[id];
-export const getEvents = (state, babyId) => state.order[babyId].map(
-  id => getEvent(state, id),
-).filter(event => event != null);
+export const getEvents = state => {
+  const events = {};
+  Object.keys(state.orderByBaby).forEach(element => 
+    events[element] = state.orderByBaby[element].map(
+      id => getEvent(state, id),
+    ).filter(event => event != null))
+    return events;
+};
