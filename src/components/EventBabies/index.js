@@ -5,20 +5,20 @@ import { Link } from 'react-router-dom';
 
 import './styles.css';
 import * as selectors from '../../reducers';
+import * as actionsBabies from '../../actions/babies';
 import * as actions from '../../actions/events';
 
 const eventTypes = ['Siesta', 'Pacha', 'Cambio de pañal (popo)', 'Cambio de pañal (pipi)', 'Pecho']
 
-const EventBabies = ({ babies, events, onClick, onSubmit }) => {
-  const [babySelect, changeBabySelect] = useState('');
+const EventBabies = ({ babies, events, selectedBaby, onClick, onSubmit, onChangeBaby }) => {
   const [eventTypeSelect, changeEventTypeSelect] = useState('');
   const [notesInput, changeNotesInput] = useState('');
   return (
     <div className="event-babies">
         <div className="event-babies-info">
           <div className="event-babies-baby-container">
-            <select id="babiesSelect" defaultValue='DEFAULT' className="event-babies-select"
-              onChange={e => changeBabySelect(e.target.value)}  >
+            <select id="babiesSelect"  defaultValue={(selectedBaby === null) ? ('DEFAULT') : (selectedBaby)} className="event-babies-select"
+              onChange={e => onChangeBaby(e.target.value)}  >
               <option value="DEFAULT" disabled hidden>
                 {'Selecciona un bebe'}
               </option>
@@ -34,18 +34,18 @@ const EventBabies = ({ babies, events, onClick, onSubmit }) => {
               </button>
             </Link>
           </div>
-          {(babySelect === '')
+          {(selectedBaby === null)
           ? (
           <div/>
-          ) : (events[babySelect] === undefined)
+          ) : (events[selectedBaby] === undefined)
           ? (
           <div/>
           ) : (
-          events[babySelect].map((event) => (
+          events[selectedBaby].map((event) => (
             <div key={event.eventId} className="event-babies-event" >
               <div className="event-babies-event-delete" >
                 <button className="event-babies-event-delete-button" onClick={() => 
-                  onClick(babySelect, event.eventId)}>
+                  onClick(selectedBaby, event.eventId)}>
                   {'x'}
                 </button>
               </div>
@@ -92,7 +92,7 @@ const EventBabies = ({ babies, events, onClick, onSubmit }) => {
           />
           <br/>
           <button type="submit" className="event-babies-form-button" onClick={
-            () => onSubmit(babySelect, eventTypeSelect, notesInput)
+            () => onSubmit(selectedBaby, eventTypeSelect, notesInput)
           }>
             {'Crear'}
           </button>
@@ -106,6 +106,7 @@ export default connect(
   state => ({
     babies: selectors.getBabies(state),
     events: selectors.getEvents(state),
+    selectedBaby: selectors.getSelectedBaby(state),
   }),
   dispatch => ({
     onClick(babyId, eventId) {
@@ -119,6 +120,9 @@ export default connect(
       : (notesInput==="") ?
       alert("Ingresa notas al evento para continuar")
       : dispatch(actions.addEvent(babySelect, uuidv4(), eventTypeSelect, notesInput, new Date()));
+    },
+    onChangeBaby(babyId) {
+      dispatch(actionsBabies.selectBaby(babyId));
     },
   }),
 )(EventBabies);

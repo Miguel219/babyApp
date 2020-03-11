@@ -53,4 +53,4 @@ export const getBabies = state => state.order.map(
   id => getBaby(state, id),
 ).filter(baby => baby != null);
 export const isSelectedBaby = state => ((state.selected !== null) ? true : false);
-export const getSelectedBaby = state => state.byId[state.selected];
+export const getSelectedBaby = state => (isSelectedBaby(state)) ? (state.selected) : (null);
