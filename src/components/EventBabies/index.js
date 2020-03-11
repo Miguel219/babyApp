@@ -9,11 +9,10 @@ import * as actions from '../../actions/events';
 
 const eventTypes = ['Siesta', 'Pacha', 'Cambio de pañal (popo)', 'Cambio de pañal (pipi)', 'Pecho']
 
-const EventBabies = ({ babies, events, onSubmit }) => {
+const EventBabies = ({ babies, events, onClick, onSubmit }) => {
   const [babySelect, changeBabySelect] = useState('');
   const [eventTypeSelect, changeEventTypeSelect] = useState('');
   const [notesInput, changeNotesInput] = useState('');
-  console.log(events)
   return (
     <div className="event-babies">
         <div className="event-babies-info">
@@ -35,22 +34,32 @@ const EventBabies = ({ babies, events, onSubmit }) => {
               </button>
             </Link>
           </div>
-          {(babySelect!=='')
-          ? (events[babySelect].map((event) => (
-          <div key={event.eventId} className="event-babies-event" >
-            <label className="event-babies-event-label">
-              {'Fecha: ' + new Date(event.date).toLocaleString()}
-            </label>
-            <label className="event-babies-event-label">
-              {'Tipo: ' + eventTypes[event.type]}
-            </label>
-            <label className="event-babies-event-label">
-              {'Notas: ' + event.notes}
-            </label>
-          </div>
-            ))
-          ) : (
+          {(babySelect === '')
+          ? (
           <div/>
+          ) : (events[babySelect] === undefined)
+          ? (
+          <div/>
+          ) : (
+          events[babySelect].map((event) => (
+            <div key={event.eventId} className="event-babies-event" >
+              <div className="event-babies-event-delete" >
+                <button className="event-babies-event-delete-button" onClick={() => 
+                  onClick(babySelect, event.eventId)}>
+                  {'x'}
+                </button>
+              </div>
+              <label className="event-babies-event-label">
+                {'Fecha: ' + new Date(event.date).toLocaleString()}
+              </label>
+              <label className="event-babies-event-label">
+                {'Tipo: ' + eventTypes[event.type]}
+              </label>
+              <label className="event-babies-event-label">
+                {'Notas: ' + event.notes}
+              </label>
+            </div>
+              ))
           )}
         </div>
         <div className="event-babies-form">
@@ -99,6 +108,9 @@ export default connect(
     events: selectors.getEvents(state),
   }),
   dispatch => ({
+    onClick(babyId, eventId) {
+      dispatch(actions.deleteEvent(babyId, eventId));
+    },
     onSubmit(babySelect, eventTypeSelect, notesInput) {
       (babySelect==="") ?
       alert("Selecciona un bebe para continuar")

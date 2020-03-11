@@ -17,11 +17,11 @@
 	border-radius: 50px;
     align-items: center;
     background: white;
-    border-radius: 3px;
+    border-radius: 50px;
     box-shadow: -5px 5px 0px -3px rgba(0,0,0,0.22);
     display: flex;
     flex-direction: column;
-    height: 700px;
+    height: 450px;
     position: fixed;
     right: 10px;
     width: 35%;
@@ -30,6 +30,7 @@
 .event-babies-baby-container {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 .event-babies-event {
@@ -39,7 +40,7 @@
     box-shadow: -5px 5px 0px -3px rgba(0,0,0,0.22);
     display: flex;
     flex-direction: column;
-    height: 150px;
+    min-height: max-content;
     margin-top: 20px;
     right: 10px;
     width: 80%;
@@ -47,7 +48,23 @@
 
 .event-babies-event-label {
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: -10px;
+    margin-bottom: 16px;
+}
+
+.event-babies-event-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.event-babies-event-delete-button {
+    background: red;
+    border-radius: 15px;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
 }
 
 .event-babies-select {

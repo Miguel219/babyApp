@@ -16,7 +16,12 @@ const orderByBaby = (state = {}, action) => {
       };
     }
     case types.EVENT_DELETED: {
-      return state[action.payload.babyId].filter(event => event !== action.payload.eventId);
+      return (state[action.payload.babyId].length === 1) 
+        ? (omit(state, [action.payload.babyId])) 
+        : ({
+          ...state, 
+          [action.payload.babyId]: state[action.payload.babyId]
+          .filter(event => event !== action.payload.eventId)});
     }
     default: {
       return state;
