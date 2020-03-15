@@ -9,7 +9,6 @@ import EventBabies from '../EventBabies';
 
 const history = createHashHistory();
 const App = ({ store }) => { 
-  document.body.style = 'background: whitesmoke;';
   return(
   <Provider store={store}>
     <Router history={history} >
